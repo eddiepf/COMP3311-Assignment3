@@ -1,0 +1,16 @@
+/* Name: Tan Peng Fei Eddie, ID: 20286052 */
+
+SELECT course_ID, credits FROM course WHERE credits = (SELECT MAX(credits) FROM course);
+
+SELECT staff_ID, last_name, first_name FROM prof WHERE prof.staff_id IN (SELECT staff_id FROM offering WHERE course_id ='Comp3311' AND offering.staff_id <> (SELECT staff_id FROM offering WHERE course_id = 'Comp4311'));
+
+SELECT student_ID, last_name, first_name FROM TA WHERE TA.student_ID IN (SELECT student_id, COUNT(student_id) AS most_student FROM pref_TA WHERE rownum = 1 GROUP BY student_id ORDER BY most_student DESC);
+
+SELECT staff_ID, last_name, first_name FROM prof WHERE prof.staff_ID NOT IN (SELECT staff_ID FROM offering WHERE offering.course_ID IN (SELECT prereq_course_ID FROM prerequisite WHERE main_course_ID = 'Comp3311’));
+
+SELECT staff_ID, last_name, first_name FROM prof WHERE prof.staff_ID IN (SELECT staff_ID FROM offering WHERE course_ID = 'Comp3311');
+
+
+
+
+
